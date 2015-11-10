@@ -1,19 +1,21 @@
 var keys = {
-  display: document.getElementById("display"),
-  key1: document.getElementById("key1"),
-  key2: document.getElementById("key2"),
-  key3: document.getElementById("key3"),
-  key4: document.getElementById("key4"),
-  key5: document.getElementById("key5"),
-  key6: document.getElementById("key6"),
-  key7: document.getElementById("key7"),
-  key8: document.getElementById("key8"),
-  key9: document.getElementById("key9"),
-  key0: document.getElementById("key0"),
-  key00: document.getElementById("key00"),
-  keyDot: document.getElementById("keyDot"),
-  keyClear: document.getElementById("keyClear"),
-
+  display: document.getElementById('display'),
+  key1: document.getElementById('key1'),
+  key2: document.getElementById('key2'),
+  key3: document.getElementById('key3'),
+  key4: document.getElementById('key4'),
+  key5: document.getElementById('key5'),
+  key6: document.getElementById('key6'),
+  key7: document.getElementById('key7'),
+  key8: document.getElementById('key8'),
+  key9: document.getElementById('key9'),
+  key0: document.getElementById('key0'),
+  key00: document.getElementById('key00'),
+  keyDot: document.getElementById('keyDot'),
+  keyClear: document.getElementById('keyClear'),
+  keyBalance: document.getElementById('keyBalance'),
+  keyDeposit: document.getElementById('keyDeposit'),
+  keyWithdraw: document.getElementById('keyWithdraw')
 };
 
 
@@ -43,40 +45,47 @@ var press = {
   pressDot: keys.keyDot.addEventListener('click', function() {display.innerHTML += '.';}),
   pressClear: keys.keyClear.addEventListener('click', function() {
     display.innerHTML = '';
-    calculator.total = null;
-    calculator.lastOperator = '';
+    calculator.total = 0;
   })
 };
 
 var register = {
 
-  balance: 0.00,
-  display: 0.00,
+  balance: 5,
+  // display: 5,
 
   getBalance: function() {
     return this.balance;
   },
 
   depositCash: function() {
-    this.balance += display.innerHTML;
+    this.balance += parseFloat(display.innerHTML);
+    display.innerHTML = '';
+    console.log(this.balance);
   },
 
   withdrawCash: function () {
-    this.balance -= display.innerHTML;
+    this.balance -= parseFloat(display.innerHTML);
     display.innerHTML = '';
+    console.log(this.balance);
   }
 };
 
-document.getElementById('keyBalance').addEventListener('click', function() {
+keys.keyBalance.addEventListener('click', function() {
   register.getBalance();
+  console.log(register.getBalance());
+  console.log(register.balance);
 });
 
-document.getElementById('keyDeposit').addEventListener('click', function() {
+keys.keyDeposit.addEventListener('click', function() {
   register.depositCash();
+  console.log(register.balance);
 });
 
-document.getElementById('keyWithdraw').addEventListener('click', function() {
+keys.keyWithdraw.addEventListener('click', function() {
   register.withdrawCash();
+  console.log('Withdraw');
+  console.log(register.balance);
 });
 
 var system = {
