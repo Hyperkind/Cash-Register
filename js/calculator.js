@@ -1,5 +1,5 @@
 var calculator = {
-  total: 0.00,
+  total: 0,
 
   add: function (n) {
     return this.total += n;
